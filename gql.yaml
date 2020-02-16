@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web
+  namespace: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: web
+  template:
+    metadata:
+      labels:
+        run: web
+    spec:
+      containers:
+      - image: gcr.io/proud-reality-267007/graphql-apollo
+        imagePullPolicy: Always
+        name: web
+        ports:
+        - containerPort: 4000
+          protocol: TCP
